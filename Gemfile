@@ -6,7 +6,7 @@ gem 'pg'
 
 gem 'activesupport'
 gem 'activerecord'
-
+gem 'faker'
 gem 'rake'
 gem 'shotgun'
 gem 'bcrypt'
