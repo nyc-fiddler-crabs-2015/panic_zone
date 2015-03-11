@@ -1,2 +1,28 @@
+<div class="nav">
+  <h3>Panic Zone</h3>
+  <ul>
+    <li><a href="/welcome">Home</a></li>
+    <li><a href="/users/<%= current_user.id %>">My Profile</a></li>
+  </ul>
+  <div class = "btn">
+    <% if current_user %>
+    <a href="/logout">logout</a>
+    <% else %>
+    <a href="/login">login</a>
+    <% end %>
+  </div>
+
 <h1>Hi <%= @user.name %></h1>
 <h3>Welcome to Your Page</h3>
+
+<img class = "propic" src="<%= @user.image_url %>">
+
+<h4><%= @user.mantra %></h4>
+
+<h4><%= @user.posts.all %></h4>
+
+<h4><%= @user.comments.all %></h4>
+
+<div class="community">
+  <button class="btn" id="community">"Meet Your Community!"</button>
+</div>
