@@ -1,0 +1,33 @@
+<div class="nav">
+  <h3>Panic Zone</h3>
+  <ul>
+    <li><a href="/welcome">Home</a></li>
+    <li><a href="/users/:id">My Profile</a></li>
+  </ul>
+  <div class = "btn">
+    <% if current_user %>
+    <a href="/logout">logout</a>
+    <% else %>
+    <a href="/login">login</a>
+    <% end %>
+  </div>
+
+<h2>Hi <%= @post.user.name %>!</h2>
+
+<%= @post.title %>
+<%= @post.content %>
+
+<div class="comment">
+  <ul class="comment_list">
+    <% @post.comments.each do |comment| %>
+    <li><%=comment.content%></li>
+    <li><%=comment.user.name%></li>
+
+    <% end %>
+  </ul>
+  <%= erb :'comments/_comments_form', :layout => false %>
+</div>
+
+<div="momentum">
+  <h3>"a smooth sea never made a skilled sailor"</h3>
+</div>
