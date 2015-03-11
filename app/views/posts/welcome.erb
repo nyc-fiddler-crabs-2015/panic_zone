@@ -1,15 +1,29 @@
+
 <div class="nav">
   <h3>Panic Zone</h3>
-
   <ul>
     <li><a href="/welcome">Home</a></li>
     <li><a href="/users/:id">My Profile</a></li>
   </ul>
   <div class = "btn">
     <% if current_user %>
-      <a href="/logout">logout</a>
+    <a href="/logout">logout</a>
     <% else %>
-      <a href="/login">login</a>
+    <a href="/login">login</a>
     <% end %>
   </div>
+  <div class = "index">
+    <ol>
+      <% @posts.each do |post| %>
+      <li>
+        <a href="/posts/<%= post.id %>"><%= post.title %></a>
+        <a href="/posts/<%= post.id  %>/edit">edit</a>
+        <%= erb :'posts/_delete_post_button', :layout => false, :locals => { :post => post }  %>
+      </li>
+      <% end %>
+    </ol>
+  </div>
+</div>
+<div class = "form">
+  <%= erb :'posts/_posts_form' %>
 </div>
