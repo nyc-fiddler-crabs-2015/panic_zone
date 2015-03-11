@@ -3,7 +3,7 @@
   <h3>Panic Zone</h3>
   <ul>
     <li><a href="/welcome">Home</a></li>
-    <li><a href="/users/:id">My Profile</a></li>
+    <li><a href="/users/<%= current_user.id %>">My Profile</a></li>
   </ul>
   <div class = "btn">
     <% if current_user %>
@@ -12,13 +12,23 @@
     <a href="/login">login</a>
     <% end %>
   </div>
+  <% if @error %>
+
+  <div class="alert alert-danger alert-dismissible" role="alert">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    <div class="error"><%= @error %></div>
+
+  </div>
+  <% end %>
   <div class = "index">
     <ol>
       <% @posts.each do |post| %>
       <li>
-        <a href="/posts/<%= post.id %>"><%= post.title %></a>
-        <a href="/posts/<%= post.id  %>/edit">edit</a>
-        <%= erb :'posts/_delete_post_button', :layout => false, :locals => { :post => post }  %>
+          <a href="/posts/<%= post.id %>"><%= post.title %></a>
+        <% if current_user.id == post.user.id %>
+          <a href="/posts/<%= post.id  %>/edit">edit</a>
+          <%= erb :'posts/_delete_post_button', :layout => false, :locals => { :post => post }  %>
+        <% end %>
       </li>
       <% end %>
     </ol>
