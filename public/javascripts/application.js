@@ -43,7 +43,7 @@ $(document).ready(function(){
         data: $target.serialize(),
         success: function(response) {
           $(".comment_list").append("<li>" + response.content + "</li>");
-          $(".comment_list").append("<li>" + response + "</li>");
+          $(".comment_list").append("<li>By: " + response.user_name + "</li>");
           $target.clear;
         },
         error: function(response) {

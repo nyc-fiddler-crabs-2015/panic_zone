@@ -6,7 +6,7 @@ end
 post '/posts/:post_id/comments.json' do
   content_type :json
   @comment = Comment.create(user_id: session[:user_id], content: params[:content], post_id: params[:post_id])
-  @comment.to_json
+  @comment.attributes.merge({ user_name: @comment.user.name }).to_json
 end
 
 get '/comments/:id/edit' do
